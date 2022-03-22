@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WiredBrainCoffeeSurveys.Reports
 {
@@ -6,23 +7,25 @@ namespace WiredBrainCoffeeSurveys.Reports
     {
         static void Main(string[] args)
         {
+            var tasks = new List<string>();
+
             // Calculated Values
             double responseRate = Q1Results.NumberResponded / Q1Results.NumberSurveyed;
-            double unasweredCount = Q1Results.NumberSurveyed - Q1Results.NumberResponded;
-            double averallScore = (Q1Results.ServiceScore + Q1Results.CoffeeScore + Q1Results.FoodScore + Q1Results.PriceScore) / 4;
+            double overallScore = (Q1Results.ServiceScore + Q1Results.CoffeeScore + Q1Results.FoodScore + Q1Results.PriceScore) / 4;
 
-            Console.WriteLine($"Response Percentage : { responseRate }");
-            Console.WriteLine($"Unanswered Surveys : { unasweredCount }");
-            Console.WriteLine($"Overall Score : { averallScore }");
+            if (Q1Results.CoffeeScore < Q1Results.FoodScore)
+            {
+                tasks.Add("Investigate coffee recipes and ingredents");
+            }
 
-            // Logical Comparisons
-            bool isCoffeeScoreLower = Q1Results.CoffeeScore > Q1Results.FoodScore;
-            bool customersRecommend = Q1Results.WouldRecommend >= 7;
-            bool noGranolaYesCappucino = Q1Results.LeastFavoriteProduct == "Granola" && Q1Results.FavoriteProduct == "Cappucino";
-
-            Console.WriteLine($"Coffee Score Higher Than Food : { isCoffeeScoreLower }");
-            Console.WriteLine($"Customers Would Recommend Us : { customersRecommend }");
-            Console.WriteLine($"Hate Granola, Love Cappucino : { noGranolaYesCappucino }");
+            if(overallScore > 8.0)
+            {
+                tasks.Add("Work with leadership to reward staff.");
+            }
+            else
+            {
+                tasks.Add("Work with eployees for improvement ideas.");
+            }
         }
     }
 }
