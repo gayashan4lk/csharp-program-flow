@@ -14,6 +14,12 @@ namespace WiredBrainCoffeeSurveys.Reports
                 Console.WriteLine("Please specify a report to run (Rewards, Comments, Tasks, Quit)");
                 var selectedResports = Console.ReadLine();
 
+                Console.WriteLine("Please specify which quarter of date : (q1, q2)");
+                var selectedData = Console.ReadLine();
+
+                var surveyResults = JsonConvert.DeserializeObject<surveyResults>
+                    (File.ReadAllText($"data/{selectData}.json"));
+
                 switch (selectedResports)
                 {
                     case "Rewards":
