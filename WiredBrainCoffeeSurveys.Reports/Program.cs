@@ -39,6 +39,25 @@ namespace WiredBrainCoffeeSurveys.Reports
             {
                 tasks.Add("Reward participants with discount coffee coupon.");
             }
+
+            switch (Q1Results.AreaToImprove)
+            {
+                case "RewardsProgram":
+                    tasks.Add("Revisit the rewards deals.");
+                    break;
+
+                case "Cleanliness":
+                    tasks.Add("Contact the cleaning vendor.");
+                    break;
+
+                case "MobileApp":
+                    tasks.Add("Contact consulting fire about app.");
+                    break;
+
+                default:
+                    tasks.Add("Investigate individual comments for ideas.");
+                    break;
+            }
         }
     }
 }
