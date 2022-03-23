@@ -7,6 +7,43 @@ namespace WiredBrainCoffeeSurveys.Reports
     {
         static void Main(string[] args)
         {
+            bool quiteApp = false;
+
+            do
+            {
+                Console.WriteLine("Please specify a report to run (Rewards, Comments, Tasks, Quit)");
+                var selectedResports = Console.ReadLine();
+
+                switch (selectedResports)
+                {
+                    case "Rewards":
+                        GenerateWinnerEmails();
+                        break;
+
+                    case "Comments":
+                        GenerateCommentsReport();
+                        break;
+
+                    case "Tasks":
+                        GenerateTasksReport();
+                        break;
+
+                    case "Quit":
+                        quiteApp = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Sorry, Your input is not valid.");
+                        break;
+                }
+
+                Console.WriteLine
+            }
+            while (!quiteApp);
+        }
+
+        private static void GenerateWinnerEmails()
+        {
             var selectedEmails = new List<string>();
             int counter = 0;
 
@@ -22,9 +59,6 @@ namespace WiredBrainCoffeeSurveys.Reports
 
                 counter++;
             }
-
-            GenerateTasksReport();
-            GenerateCommentsReport();
         }
 
         private static void GenerateCommentsReport()
@@ -101,6 +135,14 @@ namespace WiredBrainCoffeeSurveys.Reports
                     tasks.Add("Investigate individual comments for ideas.");
                     break;
             }
+
+            Console.WriteLine(Environment.NewLine + "Tasks Output : ");
+            foreach (var task in tasks)
+            {
+                Console.WriteLine(task);
+            }
+
+            File.WriteAllLines("TasksReport.csv", tasks); ;
         }
     }
 }
