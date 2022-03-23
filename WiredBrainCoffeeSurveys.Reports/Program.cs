@@ -18,6 +18,14 @@ namespace WiredBrainCoffeeSurveys.Reports
                     Console.WriteLine(currentResponse.Comments);
                 }
             }
+
+            foreach (var response in Q1Results.Responses)
+            {
+                if (respnse.AreaToImprove == Q1Results.AreaToImprove)
+                {
+                    Console.WriteLine(response.Comments);
+                }
+            }
         }
         public static void GenerateTasksReport()
         {
