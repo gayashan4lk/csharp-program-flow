@@ -7,13 +7,33 @@ namespace WiredBrainCoffeeSurveys.Reports
     {
         static void Main(string[] args)
         {
-            GenerateTasksReport();
+            var selectedEmails = new List<string>();
+            int counter = 0;
 
+            while (selectedEmails.Count < 2 && counter < Q1Results.Responses.Count)
+            {
+                var currentItem = Q1Results.Responses[counter];
+
+                if (currentItem.FavouriteProduct == "Cappucino")
+                {
+                    selectedEmails.Add(currentItem.EmailAddress);
+                    Console.WriteLine(currentItem.EmailAddress);
+                }
+
+                counter++;
+            }
+
+            GenerateTasksReport();
+            GenerateCommentsReport();
+        }
+
+        private static void GenerateCommentsReport()
+        {
             for (var i = 0; i < Q1Results.Responses.Count; i++)
             {
                 var currentResponse = Q1Results.Responses[i];
 
-                if(currentResponse.WouldRecommend < 7.0)
+                if (currentResponse.WouldRecommend < 7.0)
                 {
                     Console.WriteLine(currentResponse.Comments);
                 }
@@ -27,6 +47,7 @@ namespace WiredBrainCoffeeSurveys.Reports
                 }
             }
         }
+
         public static void GenerateTasksReport()
         {
             var tasks = new List<string>();
