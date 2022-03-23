@@ -7,6 +7,11 @@ namespace WiredBrainCoffeeSurveys.Reports
     {
         static void Main(string[] args)
         {
+            GenerateTasksReport();
+        }
+
+        public static void GenerateTasksReport()
+        {
             var tasks = new List<string>();
 
             // Calculated Values
@@ -18,7 +23,7 @@ namespace WiredBrainCoffeeSurveys.Reports
                 tasks.Add("Investigate coffee recipes and ingredents");
             }
 
-            if(overallScore > 8.0)
+            if (overallScore > 8.0)
             {
                 tasks.Add("Work with leadership to reward staff.");
             }
@@ -27,7 +32,7 @@ namespace WiredBrainCoffeeSurveys.Reports
                 tasks.Add("Work with eployees for improvement ideas.");
             }
 
-            if(responseRate < .33)
+            if (responseRate < .33)
             {
                 tasks.Add("Research options to improve response rate.");
             }
